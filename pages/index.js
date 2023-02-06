@@ -1,6 +1,8 @@
 import Head from 'next/head';
 import Hero from '../components/Hero/Hero';
 import Products from '../components/Products/Products';
+import Sale from '../components/Sale/Sale';
+import Services from '../components/Services/Services';
 
 export default function Home() {
   return (
@@ -15,6 +17,8 @@ export default function Home() {
         <main>
           <Hero />
           <Products />
+          <Services />
+          <Sale />
         </main>
       </div>
     </>
