@@ -1,6 +1,13 @@
-import React from 'react';
+import { useInView, motion } from 'framer-motion';
+import React, { useRef } from 'react';
 
 const Services = () => {
+  const textRef = useRef(null);
+  const ref = useRef(null);
+
+  const isInView = useInView(ref, { once: false }); // observer
+  const isTextInView = useInView(textRef, { once: false }); // observer
+
   const servicesData = [
     {
       id: 1,
@@ -22,14 +29,25 @@ const Services = () => {
     },
   ];
   return (
-    <section className="p-28 pt-10">
-      <div>
-        <h3 className="text-4xl text-white font-semibold pb-3">What We Do</h3>
-        <p className="text-xl text-gray-300">
+    <section className="lg:p-28 py-10">
+      <motion.div
+        ref={textRef}
+        animate={{ x: isTextInView ? [-500, 0] : 0 }}
+        transition={{ type: 'spring', stiffness: 50 }}
+      >
+        <h3 className="text-2xl lg:text-4xl text-white font-semibold pb-3">
+          What We Do
+        </h3>
+        <p className="text-md lg:text-xl text-gray-300">
           We make affordable reusable eco friendly Products.
         </p>
-      </div>
-      <div className="grid grid-cols-3 gap-8 mt-8">
+      </motion.div>
+      <motion.div
+        ref={ref}
+        animate={{ x: isInView ? [500, 0] : 0 }}
+        transition={{ type: 'spring', stiffness: 50 }}
+        className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8 mx-2 lg:mx-0"
+      >
         {servicesData.map((s) => (
           <div
             key={s?.id}
@@ -44,7 +62,7 @@ const Services = () => {
             </div>
           </div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 };
