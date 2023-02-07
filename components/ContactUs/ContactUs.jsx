@@ -10,7 +10,6 @@ const ContactUs = () => {
 
   const isInView = useInView(ref, { once: false }); // observer
   const isTextInView = useInView(textRef, { once: false }); // observer
-  const isFromInView = useInView(textRef, { once: false }); // observer
 
   return (
     <section className="lg:p-28 pt-16 ">
@@ -70,8 +69,8 @@ const ContactUs = () => {
           </ul>
         </motion.div>
         <motion.div
-          ref={fromRef}
-          animate={{ x: isFromInView ? [500, 0] : 0 }}
+          ref={ref}
+          animate={{ x: isInView ? [500, 0] : 0 }}
           transition={{ type: 'spring', stiffness: 50 }}
           className=" grid grid-cols-1 lg:grid-cols-2 gap-4"
         >
